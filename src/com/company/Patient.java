@@ -4,9 +4,9 @@ public class Patient {
     private String identity_number;
     private String allergy_info;
     private String chronic_info;
-    private Object pregnancy;
+    private String pregnancy;
 
-    public Patient(String identity_number, String allergy_info, String chronic_info, Object pregnancy) {
+    public Patient(String identity_number, String allergy_info, String chronic_info, String pregnancy) {
         this.identity_number = identity_number;
         this.allergy_info = allergy_info;
         this.chronic_info = chronic_info;
@@ -25,7 +25,7 @@ public class Patient {
         return chronic_info;
     }
 
-    public Object getPregnancy() {
+    public String getPregnancy() {
         return pregnancy;
     }
 }

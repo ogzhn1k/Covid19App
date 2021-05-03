@@ -9,7 +9,7 @@ public class User {
     private String surname;
     private String username;
     private String password;
-    private Object gender;
+    private String gender;
     private Date dateOfBirth;
 
 
@@ -21,7 +21,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String identity_number,String name, String surname, String username, String password,Object gender,Date dateOfBirth) {
+    public User(String identity_number,String name, String surname, String username, String password,String gender,Date dateOfBirth) {
         this.identity_number = identity_number;
         this.name = name;
         this.surname = surname;
@@ -51,7 +51,7 @@ public class User {
         return password;
     }
 
-    public Object getGender() {
+    public String getGender() {
         return gender;
     }
 

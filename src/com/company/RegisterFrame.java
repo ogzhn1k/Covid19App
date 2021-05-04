@@ -84,6 +84,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
                                               pregnancy);
 
                 crudOperations.insertToDbPatient(patient,sqlPatient);
+                JOptionPane.showMessageDialog(null,"Registration is Successful");
+                dispose();
 
         }
 

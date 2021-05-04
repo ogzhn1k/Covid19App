@@ -57,7 +57,7 @@ public class LoginFrame extends JFrame implements ActionListener{
                                    resultset.getString("password")));
             }
             statement.close();
-            
+
                 if(e.getSource() == loginButton){
                     for(User user : users){
                         if(user.getUsername().equals(usernameTfield.getText()) && user.getPassword().equals(String.valueOf(passwordField.getPassword()))){
@@ -66,7 +66,7 @@ public class LoginFrame extends JFrame implements ActionListener{
                             String sql = "select * from doctors where identity_number = '"+user.getIdentity_number()+"'";
                             resultset = statement.executeQuery(sql);
                             if(resultset.next())
-                                patOrDoc = false;
+                                patOrDoc = false; // Doctor has been found
 
                             found = true;
                             break;

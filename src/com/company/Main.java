@@ -12,9 +12,5 @@ public class Main {
                 LoginFrame loginScreen = new LoginFrame();
             }
         });
-
-
-
-	// write your code here
     }
 }

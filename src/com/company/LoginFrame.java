@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class LoginFrame extends JFrame implements ActionListener{
+
     private JTextField usernameTfield;
-    //private JTextField passwordTfield;
     private JButton loginButton;
     private JButton registerButton;
     private JPanel panelLogin;
@@ -27,7 +27,6 @@ public class LoginFrame extends JFrame implements ActionListener{
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         loginButton.addActionListener(this);
         registerButton.addActionListener(this);
         exitButton.addActionListener(this);
@@ -42,8 +41,10 @@ public class LoginFrame extends JFrame implements ActionListener{
         Statement statement = null; // Sql statements
         ResultSet resultset; // sql den gelen sonucları tutar
         boolean found = false;
+        boolean patOrDoc=true;
 
         try{
+
             connection = dbConnection.getConnection();
             statement = connection.createStatement();
             resultset = statement.executeQuery("select * from users");
@@ -55,20 +56,39 @@ public class LoginFrame extends JFrame implements ActionListener{
                                    resultset.getString("username"),
                                    resultset.getString("password")));
             }
-            connection.close();
-
-
+            statement.close();
+            
                 if(e.getSource() == loginButton){
                     for(User user : users){
                         if(user.getUsername().equals(usernameTfield.getText()) && user.getPassword().equals(String.valueOf(passwordField.getPassword()))){
-                            JOptionPane.showMessageDialog(null,"Welcome "+user.getName()+" "+user.getSurname());
+                            //JOptionPane.showMessageDialog(null,"Welcome "+user.getName()+" "+user.getSurname());
+                            statement = connection.createStatement();
+                            String sql = "select * from doctors where identity_number = '"+user.getIdentity_number()+"'";
+                            resultset = statement.executeQuery(sql);
+                            if(resultset.next())
+                                patOrDoc = false;
+
                             found = true;
-                            //break;
+                            break;
                         }
                     }
-                    if(found == false)
-                        JOptionPane.showMessageDialog(null,"Invalid username or password");
+                    if(found==true){
 
+                        if(patOrDoc == true){ // He or she is a patient
+                            System.out.println("He or she is a patient");
+
+                            VaccineSelection vaccineSelection = new VaccineSelection();
+
+                            // TODO: Vaccine Selection Screen
+
+                        }else{
+                            System.out.println("He or she is a doctor");
+                            // TODO : Doctor Screen
+                        }
+
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Invalid username or password");
+                    }
 
 
                 }if(e.getSource() == registerButton){
@@ -82,7 +102,7 @@ public class LoginFrame extends JFrame implements ActionListener{
                     }
 
                     if(found == false){
-                                // Register JFrame
+
                         RegisterFrame registerFrame = new RegisterFrame();
                         registerFrame.setVisible(true);
                         registerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -94,14 +114,9 @@ public class LoginFrame extends JFrame implements ActionListener{
                     System.exit(0);
 
 
-            //System.out.println("Connection is successful!!!");
-
-
         } catch(SQLException exception){
             dbConnection.showErrorMessage(exception);
         }
-
-
 
     }
 }

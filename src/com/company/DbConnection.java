@@ -18,5 +18,4 @@ public class DbConnection {
         System.out.println("Error : "+exception.getMessage());
     }
 
-
 }

@@ -42,6 +42,7 @@ public class LoginFrame extends JFrame implements ActionListener{
         ResultSet resultset; // sql den gelen sonucları tutar
         boolean found = false;
         boolean patOrDoc=true;
+        String id=null;
 
         try{
 
@@ -60,6 +61,7 @@ public class LoginFrame extends JFrame implements ActionListener{
 
                 if(e.getSource() == loginButton){
                     for(User user : users){
+                        id = user.getIdentity_number();
                         if(user.getUsername().equals(usernameTfield.getText()) && user.getPassword().equals(String.valueOf(passwordField.getPassword()))){
                             //JOptionPane.showMessageDialog(null,"Welcome "+user.getName()+" "+user.getSurname());
                             statement = connection.createStatement();
@@ -77,7 +79,7 @@ public class LoginFrame extends JFrame implements ActionListener{
                         if(patOrDoc == true){ // He or she is a patient
                             System.out.println("He or she is a patient");
 
-                            VaccineSelection vaccineSelection = new VaccineSelection();
+                            VaccineSelection vaccineSelection = new VaccineSelection(id);
 
                             // TODO: Vaccine Selection Screen
 

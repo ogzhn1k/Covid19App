@@ -52,6 +52,29 @@ public class CrudOperations {
 
     }
 
+    public void insertToDbAppo(Appointment appo,String sql){// BURADA KALDIM!!!!!!!!!!!!!!
+
+        try {
+            Connection connection = dbConnection.getConnection();
+            PreparedStatement statementAppo = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statementAppo.setInt(1,appo.getAppo_id());
+            statementAppo.setString(2,appo.getPatient_id());
+            statementAppo.setString(3,appo.getDoctor_id());
+            statementAppo.setInt(4,appo.getHospital_id());
+            statementAppo.setInt(5,appo.getVaccine_id());
+            statementAppo.setDate(6, (Date) appo.getFirst_date());
+            statementAppo.setDate(7, (Date) appo.getSecond_date());
+            int s = statementAppo.executeUpdate();
+            statementAppo.close();
+            connection.close();
+
+        }catch (SQLException exception){
+            dbConnection.showErrorMessage(exception);
+        }
+
+
+    }
+
     public ArrayList<Vaccine> getVaccines() {
 
         ArrayList<Vaccine> vaccines = null;
@@ -136,6 +159,37 @@ public class CrudOperations {
         return doctors;
 
     }
+
+    public ArrayList<User> getUsers(){
+
+        ArrayList<User> users = null;
+        try {
+            Connection connection = dbConnection.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultset = statement.executeQuery("select * from users");
+            users = new ArrayList<User>();
+
+            while (resultset.next()) {
+                users.add(new User(resultset.getString("identity_number"),
+                        resultset.getString("name"),resultset.getString("surname")
+                ));
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (SQLException exception) {
+            dbConnection.showErrorMessage(exception);
+        }
+
+        return users;
+
+    }
+
+
+
+
 }
 
 

@@ -12,6 +12,12 @@ public class User {
     private String gender;
     private Date dateOfBirth;
 
+    public User(String identity_number, String name, String surname) {
+        this.identity_number = identity_number;
+        this.name = name;
+        this.surname = surname;
+    }
+
     public User(String identity_number, String name, String surname, String username, String password) {
         this.identity_number = identity_number;
         this.name = name;

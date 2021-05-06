@@ -19,10 +19,12 @@ public class VaccineSelection extends JFrame implements ActionListener {
     private JTextField txtSearch;
     private JButton confirmButton;
     DefaultTableModel model;
-    private String selected;
+    private int selected;
+    private String patient_id;
 
 
-    public VaccineSelection(){
+    public VaccineSelection(String patient_id){
+        this.patient_id = patient_id;
 
         add(mainPanel);
 
@@ -57,23 +59,21 @@ public class VaccineSelection extends JFrame implements ActionListener {
             }
         });
 
-        vaccineTable.setCellSelectionEnabled(true);
-        ListSelectionModel select = vaccineTable.getSelectionModel();
-        select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        select.addListSelectionListener(new ListSelectionListener() {
+
+
+        vaccineTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                String vaccine_name = null;
-                int[]row = vaccineTable.getSelectedRows();
-                int[]columns = vaccineTable.getSelectedColumns();
-                for(int i=0;i<row.length;i++){
-                    for(int j=0 ; j<columns.length;j++){
-                        vaccine_name = (String) vaccineTable.getValueAt(row[i],columns[j]);
-                        selected = vaccine_name;
-                    }
+                if(vaccineTable.getSelectedRow()>-1){
+                    selected = (int) vaccineTable.getValueAt(vaccineTable.getSelectedRow(),0);
+                   // System.out.println(selected);
+                    return;
                 }
             }
         });
+
+
+
         confirmButton.addActionListener(this);
 
     }
@@ -84,7 +84,8 @@ public class VaccineSelection extends JFrame implements ActionListener {
         if(e.getSource() == confirmButton){
 
             // TODO: HOSPITAL,DOCTOR AND DATE SELECTION
-            DocAndHospitalSel docAndHospitalSel = new DocAndHospitalSel();
+            System.out.println(selected);
+            DocAndHospitalSel docAndHospitalSel = new DocAndHospitalSel(selected,patient_id);
 
         }
 

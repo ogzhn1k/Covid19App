@@ -3,7 +3,8 @@ package com.company;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+// Author : Oğuzhan Birk
+// The class connects java with database by using JDBC driver
 public class DbConnection {
 
     private String username = "postgres";

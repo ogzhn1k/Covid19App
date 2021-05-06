@@ -1,5 +1,6 @@
 package com.company;
-
+// Author : Oğuzhan Birk
+// Login Page
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -86,6 +87,7 @@ public class LoginFrame extends JFrame implements ActionListener{
                         }else{
                             System.out.println("He or she is a doctor");
                             // TODO : Doctor Screen
+                            DoctorScreen doctorScreen = new DoctorScreen(id);
                         }
 
                     }else{

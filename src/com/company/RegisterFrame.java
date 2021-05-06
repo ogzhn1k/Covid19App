@@ -5,7 +5,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
-
+// Author : Oğuzhan Birk
+// Registration Page
 
 public class RegisterFrame extends JFrame implements ActionListener {
 

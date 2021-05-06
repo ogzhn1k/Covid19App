@@ -1,7 +1,8 @@
 package com.company;
 
 import java.util.Date;
-
+// Author : Oğuzhan Birk
+// Appointment entity takes all information about the appointments
 public class Appointment {
 
     private int appo_id;

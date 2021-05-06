@@ -1,5 +1,6 @@
 package com.company;
-
+// Author : Oğuzhan Birk
+// Hospital Entity
 public class Hospital {
 
     private int hospital_id;

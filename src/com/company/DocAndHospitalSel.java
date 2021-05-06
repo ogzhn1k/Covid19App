@@ -1,7 +1,8 @@
 package com.company;
+// Author : Oğuzhan Birk
+// Doctor and Hospital selection screen
 
 import com.toedter.calendar.JDateChooser;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -82,8 +83,6 @@ public class DocAndHospitalSel extends JFrame implements ActionListener {
         setResizable(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
-
     }
 
 
@@ -91,6 +90,7 @@ public class DocAndHospitalSel extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == hospitalButton){
 
+            // TODO : HOSPITAL-DOCTOR RELATION
 
         }
         if(e.getSource() == confirmB){
@@ -101,7 +101,7 @@ public class DocAndHospitalSel extends JFrame implements ActionListener {
 
             String sqlAppo = " INSERT INTO Appointment"+" VALUES(?,?,?,?,?,?,?)";
             CrudOperations crudOperations = new CrudOperations();
-            Appointment appointment = new Appointment(1,patient_id,doctor_id,hospital_id,vaccine_id,sqldate,sqldate);
+            Appointment appointment = new Appointment(9,patient_id,doctor_id,hospital_id,vaccine_id,sqldate,sqldate);
 
             crudOperations.insertToDbAppo(appointment,sqlAppo);
 

@@ -1,5 +1,6 @@
 package com.company;
-
+// Author : Oğuzhan Birk
+// Vaccine selection screen
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -83,7 +84,7 @@ public class VaccineSelection extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == confirmButton){
 
-            // TODO: HOSPITAL,DOCTOR AND DATE SELECTION
+            // TODO: Chronic Control
             System.out.println(selected);
             DocAndHospitalSel docAndHospitalSel = new DocAndHospitalSel(selected,patient_id);
 

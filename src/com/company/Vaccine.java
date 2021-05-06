@@ -1,5 +1,6 @@
 package com.company;
-
+// Author : Oğuzhan Birk
+// Vaccine entity
 public class Vaccine {
 
     private int vaccine_id;

@@ -1,5 +1,6 @@
 package com.company;
-
+//Author : Oğuzhan Birk
+//Doctor Entity
 public class Doctor {
 
     private String identity_number;

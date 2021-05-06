@@ -1,7 +1,8 @@
 package com.company;
 
 import java.sql.Date;
-
+// Author : Oğuzhan Birk
+// User entity
 public class User {
 
     private String identity_number;

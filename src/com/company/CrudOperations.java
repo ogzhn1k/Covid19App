@@ -2,7 +2,8 @@ package com.company;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+// Author : Oğuzhan Birk
+// This class does db operations like delete,update,create,insert
 public class CrudOperations {
 
     DbConnection dbConnection = new DbConnection();
@@ -184,6 +185,39 @@ public class CrudOperations {
         }
 
         return users;
+
+    }
+
+    public ArrayList<Appointment> getAppo() {
+
+        ArrayList<Appointment> appos = null;
+        try {
+            Connection connection = dbConnection.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultset = statement.executeQuery("select * from appointment");
+            appos = new ArrayList<Appointment>();
+
+            while (resultset.next()) {
+                appos.add(new Appointment(resultset.getInt("appo_id"),
+                        resultset.getString("patient_id"),
+                        resultset.getString("doctor_id"),
+                        resultset.getInt("hospital_id"),
+                        resultset.getInt("vaccine_id"),
+                        resultset.getDate("first_date"),
+                        resultset.getDate("second_date")
+                ));
+            }
+
+            statement.close();
+            connection.close();
+
+
+
+        } catch (SQLException exception) {
+            dbConnection.showErrorMessage(exception);
+        }
+
+        return appos;
 
     }
 
